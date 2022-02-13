@@ -39,6 +39,19 @@ document.getElementById('submit-items').addEventListener('click', function(){
 function totalAnount(){
     const subTotal = calculateSubTotal();
     document.getElementById('sub-total').innerText = subTotal;
+    
+    //tax calculation
+    const tax = document.getElementById('tax');
+    const taxAmount =(parseFloat(subTotal) * 0.2).toFixed(2);
+    tax.innerText = taxAmount;
+    
+    //grand total calculation
+    const grandField = document.getElementById('grand-total');
+    const grandAmount = parseFloat(subTotal) + parseFloat(taxAmount);
+    grandField.innerText = grandAmount;
+
+    // Total Amount 2
+    document.getElementById('grand-total-2').innerText = grandAmount;
 }
 
 function calculateSubTotal(){
