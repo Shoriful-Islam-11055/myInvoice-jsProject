@@ -18,7 +18,8 @@ document.getElementById('submit-items').addEventListener('click', function(){
     const td = document.createElement('td');
     const td1 = document.createElement('td');
     const td2 = document.createElement('td');
-
+    
+    td2.classList.add('class-items'); // class="class-items"
     //Set items input in dinamic table field
     th.innerText = itemsName.value;
     td.innerText = itemsPrice.value;
@@ -29,8 +30,26 @@ document.getElementById('submit-items').addEventListener('click', function(){
     tr.appendChild(th);
     tr.appendChild(td);
     tr.appendChild(td1);
-    tr.appendChild(td2);
+    tr.appendChild(td2); //<td class="class-items">500</td>
     tableInfo.appendChild(tr);
-})
+
+    totalAnount();
+});
+
+function totalAnount(){
+    const subTotal = calculateSubTotal();
+    document.getElementById('sub-total').innerText = subTotal;
+}
+
+function calculateSubTotal(){
+    const cost = document.getElementsByClassName('class-items');
+    subTotal = 0;
+    for(let i = 0; i<cost.length; i++){
+        const element = cost[i];
+        const price = parseFloat(element.innerText);
+        subTotal = subTotal + price;
+    }
+    return subTotal;
+}
 
 
